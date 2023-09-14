@@ -45,12 +45,13 @@ for (var i = 0; i < itemArray.length; i++) {
   var icon = itemArray[i];
   var div = document.createElement("div");
   div.id = icon + "-icon-popup-overlay";
+  div.style.display = "flex";
   div.innerHTML =
     '<span class="bp3-popover-wrapper"><span aria-haspopup="true" class="bp3-popover-target"><span class="bp3-button bp3-minimal bp3-icon-' +
     icon +
     ' bp3-small" tabindex="0"></span></span></span><div class="rm-topbar__spacer-sm"></div>';
     if(icon.includes("header-three")){
-      div.innerText = "H3";
+      div.querySelector(".bp3-icon-header-three").innerText = "H3";
     }
   popupOverlay.append(div);
   div.addEventListener("mousedown", function (event) {
@@ -173,29 +174,6 @@ function openSearchBlock() {
     //document.querySelector(".rm-search-query-title-text button").addEventListener("click", exactTextMatchSearch);
     closePopupOverlay();
   }, 500);
-}
-
-function exactTextMatchSearch() {
-  if (event.metaKey) {
-    var x = 0;
-    var searchText = document.querySelector(
-      ".rm-search-query-title-text input"
-    ).value;
-    var results = document.querySelectorAll(
-      ".rm-search-query .rm-search-query-content .rm-block__input"
-    );
-    for (var i = 0; i <= results.length; i++) {
-      var blockText = results[i].children[0].innerText;
-
-      if (!blockText.includes(searchText)) {
-        results[i].closest(".rm-ref-page-view").style.display = "none";
-      } else {
-        x = x + 1;
-        document.querySelector(".rm-search-query-content>span").innerText =
-          x + " Results";
-      }
-    }
-  }
 }
 
 
